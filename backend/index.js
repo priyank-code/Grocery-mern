@@ -17,11 +17,10 @@ import orderRoutes from "./routes/order.routes.js";
 import addressRoutes from "./routes/address.routes.js";
 
 dotenv.config();
-
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Database and Cloudinary connection
+// Connect to DB and Cloudinary
 connectDb();
 connectCloudinary();
 
@@ -29,12 +28,7 @@ connectCloudinary();
 app.use(express.json());
 app.use(cookieParser());
 
-// Routes
-app.get("/", (req, res) => {
-  res.send("Welcome to the Grocery API");
-});
-
-// API routes
+// API Routes
 app.use("/api/user", userRoutes);
 app.use("/api/seller", sellerRoutes);
 app.use("/api/product", productRoutes);
@@ -42,14 +36,14 @@ app.use("/api/cart", cartRoutes);
 app.use("/api/order", orderRoutes);
 app.use("/api/address", addressRoutes);
 
-// Serve React Static Files
+// Serve React static build
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Serve static files from React Vite build
-app.use(express.static(path.join(__dirname, "dist")));
+app.use(express.static(path.join(__dirname, "../client/dist")));
+
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "dist", "index.html"));
+  res.sendFile(path.join(__dirname, "../client/dist", "index.html"));
 });
 
 // Start Server
