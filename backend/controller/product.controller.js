@@ -3,31 +3,6 @@ import cloudinary from "../config/cloudinary.js";
 import streamifier from "streamifier";
 
 // add product : POST /api/product/add-product
-// export const addProduct = async (req, res) => {
-//   try {
-//     const { name, description, price, offerPrice, category } = req.body;
-//     const image = req.files?.map((file) => file.filename);
-//     if(!name || !description || !price || !offerPrice || !category || !image || image.length === 0){
-//       return res.status(400).json({success: false, message: "All fields including image are required"});
-//     }
-//     await Product.create({
-//       name,
-//       description,
-//       price,
-//       offerPrice,
-//       image,
-//       category,
-//     });
-//     res
-//       .status(201)
-//       .json({ message: "Product added successfully", success: true });
-//   } catch (error) {
-//     res
-//       .status(500)
-//       .json({ message: "Internal Server Error", error: error.message });
-//   }
-// };
-// add product : POST /api/product/add-product
 export const addProduct = async (req, res) => {
   try {
     const { name, description, price, offerPrice, category } = req.body;
