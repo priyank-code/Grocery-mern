@@ -35,12 +35,17 @@ app.get("/", (req, res) => {
 });
 
 // API routes
-app.use("/api/user", userRoutes);
-app.use("/api/seller", sellerRoutes);
-app.use("/api/product", productRoutes);
-app.use("/api/cart", cartRoutes);
-app.use("/api/order", orderRoutes);
-app.use("/api/address", addressRoutes);
+
+try {
+  app.use("/api/user", userRoutes);
+  app.use("/api/seller", sellerRoutes);
+  app.use("/api/product", productRoutes);
+  app.use("/api/cart", cartRoutes);
+  app.use("/api/order", orderRoutes);
+  app.use("/api/address", addressRoutes);
+} catch (error) {
+  console.error("❌ Error while setting up routes:", error);
+}
 
 // Serve React Static Files
 const __filename = fileURLToPath(import.meta.url);
