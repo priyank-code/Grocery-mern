@@ -11,7 +11,7 @@ const router = express.Router();
 
 router.post("/add-product", authSeller, upload.array("image"),addProduct);
 router.get("/list", getProducts);
-router.get("/id", getProductById);
+router.get("/id/:id", getProductById);
 router.post("/stock", authSeller, changeStock); 
 
 export default router;
