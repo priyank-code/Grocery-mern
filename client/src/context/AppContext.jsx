@@ -2,7 +2,7 @@ import { createContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import axios from "axios";
-axios.defaults.baseURL = "https://grocery-mern.onrender.com/";
+axios.defaults.baseURL = "";
 axios.defaults.withCredentials = true;
 export const AppContext = createContext();
 

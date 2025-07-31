@@ -25,7 +25,7 @@ connectDb();
 connectCloudinary();
 
 app.use(cors({
-  origin: "https://grocery-mern.onrender.com/",
+  origin: true,
   credentials: true,
 }));
 
