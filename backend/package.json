@@ -4,10 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon index.js",
-    "postinstall": "cd ../client && npm install && npm run build"
-  },
+  "start": "npm run build-client && node index.js",
+  "build-client": "cd ../client && npm install && npm run build"
+},
   "keywords": [],
   "author": "",
   "license": "ISC",
