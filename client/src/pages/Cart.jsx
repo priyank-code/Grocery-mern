@@ -64,40 +64,53 @@ const Cart = () => {
     }
   }, [products, cartItems, cartCount]);
 
-  const placeOrder = async () => {
-    try {
-      if (!selectAddress) {
-        return toast.error("Please select an address");
-      }
-      // place order COD
-      if(paymentOption === "COD")
-      {
-        const {data} = await axios.post("api/order/cod", {items:cartArray.map((item) => ({productId:item._id, quantity:item.quantity})), address:selectAddress._id});
-        if(data.success)
-        {
-          toast.success("Order placed successfully");
-          setCartItems({});
-          navigate("/orders");
-        }
-        else
-        {
-          toast.error(data.message);
-        }
-      }
-      else{
-        const {data} = await axios.post("api/order/stripe", {items:cartArray.map((item) => ({productId:item._id, quantity:item.quantity})), address:selectAddress._id});
-        if(data.success)
-        {
-          window.location.replace(data.url);
-        }
-        else{
-          toast.error(data.message);
-        }
-      }
-    } catch (error) {
-      toast.error(error.message || "Failed to place order");
+ const placeOrder = async () => {
+  try {
+    if (cartArray.length === 0) {
+      return toast.error("Your cart is empty. Please add items to continue.");
     }
+
+    if (!selectAddress) {
+      return toast.error("Please select an address");
+    }
+
+    // place order COD
+    if (paymentOption === "COD") {
+      const { data } = await axios.post("api/order/cod", {
+        items: cartArray.map((item) => ({
+          productId: item._id,
+          quantity: item.quantity
+        })),
+        address: selectAddress._id
+      });
+
+      if (data.success) {
+        toast.success("Order placed successfully");
+        setCartItems({});
+        navigate("/orders");
+      } else {
+        toast.error(data.message);
+      }
+    } else {
+      const { data } = await axios.post("api/order/stripe", {
+        items: cartArray.map((item) => ({
+          productId: item._id,
+          quantity: item.quantity
+        })),
+        address: selectAddress._id
+      });
+
+      if (data.success) {
+        window.location.replace(data.url);
+      } else {
+        toast.error(data.message);
+      }
+    }
+  } catch (error) {
+    toast.error(error.message || "Failed to place order");
   }
+};
+
 
   return products.length > 0 && cartItems ? (
     <div className="flex flex-col md:flex-row py-16 max-w-6xl w-full px-6 mx-auto">
