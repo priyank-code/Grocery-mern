@@ -25,7 +25,7 @@ connectDb();
 connectCloudinary();
 
 app.use(cors({
-  origin: true,
+  origin: "https://grocery-mern.onrender.com",
   credentials: true,
 }));
 
@@ -45,10 +45,10 @@ app.use("/api/address", addressRoutes);
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-app.use(express.static(path.join(__dirname, "../client/dist")));
+app.use(express.static(path.join(__dirname, "./client/dist")));
 
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../client/dist", "index.html"));
+  res.sendFile(path.join(__dirname, "./client/dist", "index.html"));
 });
 
 // Start Server
