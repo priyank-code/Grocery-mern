@@ -3,7 +3,7 @@ import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
 import path from "path";
 import { fileURLToPath } from "url";
-
+import cors from "cors";
 // Config imports
 import { connectDb } from "./config/connectDB.js";
 import { connectCloudinary } from "./config/cloudinary.js";
@@ -23,6 +23,14 @@ const PORT = process.env.PORT || 3000;
 // Connect to DB and Cloudinary
 connectDb();
 connectCloudinary();
+
+//cors
+import cors from "cors";
+
+app.use(cors({
+  origin: "https://grocery-mern.onrender.com/",
+  credentials: true,
+}));
 
 // Middleware
 app.use(express.json());
