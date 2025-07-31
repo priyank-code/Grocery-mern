@@ -24,9 +24,6 @@ const PORT = process.env.PORT || 3000;
 connectDb();
 connectCloudinary();
 
-//cors
-import cors from "cors";
-
 app.use(cors({
   origin: "https://grocery-mern.onrender.com/",
   credentials: true,
