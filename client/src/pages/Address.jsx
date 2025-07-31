@@ -16,6 +16,7 @@ const Address = () => {
     phone: "",
   });
 
+  // Axios API
   const { axios, user, navigate } = useContext(AppContext);
 
   const handleChange = (e) => {
